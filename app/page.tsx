@@ -1,65 +1,53 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { CheckIcon, ShieldIcon, UserCog } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="p-4 sm:p-6 md:p-10">
+      <h1 className="text-4xl font-bold text-center mt-10">Middle-Long Distance Plans</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        <Card className="p-6 flex flex-col items-center text-center">
+          <h2 className="text-4xl font-bold mb-4">1500m</h2>
+          <p>Middle distance specialist.</p>
+          <Button className="mt-4">View plan</Button>
+          </Card>
+          <Card className="p-6 flex flex-col items-center text-center">
+          <h2 className="text-4xl font-bold mb-4">5000m</h2>
+          <p>Long distance specialist.</p>
+          <Button className="mt-4">View plan</Button>
+          </Card>
+          <Card className="p-6 flex flex-col items-center text-center">
+          <h2 className="text-4xl font-bold mb-4">10000m</h2>
+          <p>Long distance specialist.</p>
+          <Button className="mt-4">View plan</Button>
+          </Card>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="my-8 h-px w-full bg-gray-200 dark:bg-gray-800" />
+        <h1 className="text-4xl font-bold text-center mt-10">Why Train with me?</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        <Card className="p-6 flex flex-col items-center text-center">
+          <h2 className="text-4xl font-bold mb-4"><CheckIcon className="inline-block mr-2" /> Proven results</h2>
+          <ul className="text-lg list-disc list-inside text-left space-y-2">
+            <li>Join a growing community of 10+ athletes who have achieved new personal bests.</li>
+            <li>My data-driven approach is tailored to help runners excel in distances from 1500m to 10k.</li>
+          </ul>
+          </Card>
+          <Card className="p-6 flex flex-col items-center text-center">
+          <h2 className="text-4xl font-bold mb-4"><UserCog className="inline-block mr-2" /> Individualized plans</h2>
+          <ul className="text-lg list-disc list-inside text-left space-y-2">
+            <li>Receive a training plan crafted specifically for your goals, lifestyle, and current fitness level.</li>
+            <li>Plans are designed to be challenging yet achievable, whether you are a beginner or an advanced athlete.</li>
+          </ul>
+          </Card>
+          <Card className="p-6 flex flex-col items-center text-center">
+          <h2 className="text-4xl font-bold mb-4"><ShieldIcon className="inline-block mr-2" /> Injury prevention</h2>
+          <ul className="text-lg list-disc list-inside text-left space-y-2">
+            <li>Train smart with a focus on sustainable progress and long-term health.</li>
+            <li>My methodology incorporates proper warm-ups, cool-downs, and strength work to keep you running strong.</li>
+          </ul>
+          </Card>
         </div>
-      </main>
     </div>
   );
 }
