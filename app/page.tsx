@@ -1,4 +1,6 @@
 import Container from "@/components/Container/Container";
+import Divider from "@/components/Divider/Divider";
+import Footer from "@/components/Footer/Footer";
 import Plans from "@/components/Plans/Plans";
 import { Card } from "@/components/ui/card";
 import { CheckIcon, ShieldIcon, UserCog } from "lucide-react";
@@ -10,8 +12,8 @@ export default function Home() {
         Middle-Long Distance Plans
       </h1>
       <Plans />
-      
-      <div className="my-8 h-px w-full bg-gray-200 dark:bg-gray-800" />
+
+      <Divider />
       <h1 className="text-4xl font-bold text-center mt-10">
         Why Train with me?
       </h1>
@@ -62,6 +64,7 @@ export default function Home() {
           </ul>
         </Card>
       </div>
+      <Footer />
     </Container>
   );
 }
