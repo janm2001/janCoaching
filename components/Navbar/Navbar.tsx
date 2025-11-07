@@ -13,6 +13,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Avatar } from "../ui/avatar";
+import { ModeToggle } from "../mode-toggle";
 
 export function Navbar() {
   const isMobile = useIsMobile();
@@ -49,6 +50,9 @@ export function Navbar() {
               <Link href="/about">ABOUT</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
+          <NavigationMenuItem>
+            <ModeToggle />
+            </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuTrigger>
               <Avatar>
