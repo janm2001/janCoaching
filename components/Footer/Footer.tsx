@@ -4,7 +4,7 @@ import Divider from "../Divider/Divider";
 const Footer = () => {
   return (
     <Container variant="muted">
-      <div className="flex justify-between align-middle p-4 mx-10">
+      <div className="flex flex-col gap-2 p-4 mx-10 sm:flex-row sm:justify-between sm:items-center">
         <div>
           <h2 className="text-2xl font-bold">Jan Coaching</h2>
           <p>Helping you achieve your running goals</p>
@@ -16,7 +16,7 @@ const Footer = () => {
         </div>
         </div>
         <Divider />
-        <p className="text-center py-4">
+        <p className="text-center py-2">
           &copy; {new Date().getFullYear()} Jan Coaching. All rights reserved.
         </p>
       

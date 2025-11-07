@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { UserIcon, Menu as MenuIcon } from "lucide-react";
+import { useState } from "react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
@@ -19,27 +20,33 @@ import { Button } from "../ui/button";
 
 export function Navbar() {
   const isMobile = useIsMobile();
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const handleLinkClick = () => {
+    setIsSheetOpen(false);
+  };
+
   return (
     <div className="flex items-center justify-between p-4">
       <Link href="/" className="text-xl font-bold">
         Jan Coaching
       </Link>
       {isMobile ? (
-        <Sheet>
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon">
               <MenuIcon />
             </Button>
           </SheetTrigger>
           <SheetContent>
-            <div className="mt-8 flex flex-col space-y-4">
-              <Link href="/plans" className="text-lg">
+            <div className="mt-8 flex flex-col justify-center align-middle space-y-4 px-2">
+              <Link href="/plans" className="text-lg" onClick={handleLinkClick}>
                 PLANS
               </Link>
-              <Link href="/blog" className="text-lg">
+              <Link href="/blog" className="text-lg" onClick={handleLinkClick}>
                 BLOG
               </Link>
-              <Link href="/about" className="text-lg">
+              <Link href="/about" className="text-lg" onClick={handleLinkClick}>
                 ABOUT
               </Link>
             </div>
