@@ -6,7 +6,7 @@ import { Badge } from "../ui/badge";
 
 const CoachInfo = () => {
   return (
-    <Card className="p-4 my-4 grid gap-4 items-center md: grid-cols-2 ">
+    <Card className="p-4 my-4 flex flex-col gap-4 items-center md:grid md:grid-cols-2">
       <div className="text-center">
         <Image
           alt="Coach Image"
