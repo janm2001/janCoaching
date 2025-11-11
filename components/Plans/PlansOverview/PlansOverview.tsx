@@ -23,7 +23,7 @@ const PlansOverview = () => {
       <Card className="p-4">
         <h2 className="font-bold text-3xl">Training Philosophy</h2>
         <p>A scientifically-backed three-phase approach to peak performance</p>
-        <div className="grid gap-3  md: grid-cols-3">
+        <div className="grid gap-3 md:grid-cols-3 sm:grid-cols-1">
           <div>
             <h3 className="font-bold">Base Period</h3>
           <p>Focus on building aerobic capacity through lactate threshold training. Tempo runs and sustained efforts teach your body to clear lactate efficiently while building endurance foundation.</p>
@@ -43,7 +43,7 @@ const PlansOverview = () => {
         <Divider />
 
         <h2 className="text-4xl text-center my-4">How The Plans Differ</h2>
-        <div className="grid gap-4 md: grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2 sm:grid-cols-1">
         <Card className="p-4">
           <h3 className="font-bold text-2xl">1500m - 3000m Plans</h3>
           <p className="font-bold text-lg">Middle Distance Specialists</p>

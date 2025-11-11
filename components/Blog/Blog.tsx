@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { BlogPost } from "./Blogs";
 import Container from "../Container/Container";
-import { ArrowLeft, Link } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
