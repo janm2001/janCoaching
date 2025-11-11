@@ -8,6 +8,5 @@ export const authOptions: AuthOptions = {
             clientSecret: process.env.AUTH_GITHUB_SECRET!,
         }),
     ],
-    // You must still have your AUTH_SECRET in .env.local
     secret: process.env.AUTH_SECRET,
 };
