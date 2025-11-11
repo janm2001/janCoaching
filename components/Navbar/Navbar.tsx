@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { UserIcon, Menu as MenuIcon } from "lucide-react";
 import { useState } from "react";
+import { useSession, signOut } from "next-auth/react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
@@ -10,20 +11,37 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Avatar } from "../ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { ModeToggle } from "../mode-toggle";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 export function Navbar() {
   const isMobile = useIsMobile();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const { data: session } = useSession();
 
   const handleLinkClick = () => {
     setIsSheetOpen(false);
+  };
+
+  const getAvatarFallback = (name?: string | null) => {
+    if (!name) return <UserIcon />;
+    const initials = name
+      .split(" ")
+      .map((n) => n[0])
+      .join("");
+    return initials;
   };
 
   return (
@@ -52,9 +70,23 @@ export function Navbar() {
             </div>
             <div className="absolute bottom-4 right-4 flex items-center space-x-2">
               <ModeToggle />
-              <Avatar>
-                <UserIcon />
-              </Avatar>
+              {session ? (
+                <>
+                  <Avatar className="mx-2">
+                    <AvatarImage src={session.user?.image ?? ""} />
+                    <AvatarFallback>
+                      {getAvatarFallback(session.user?.name)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <Button variant="ghost" onClick={() => signOut()}>
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <Button asChild>
+                  <Link href="/login">Login</Link>
+                </Button>
+              )}
             </div>
           </SheetContent>
         </Sheet>
@@ -91,11 +123,34 @@ export function Navbar() {
               <ModeToggle />
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>
-                <Avatar>
-                  <UserIcon />
-                </Avatar>
-              </NavigationMenuTrigger>
+              {session ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <Avatar className="mx-2">
+                      <AvatarImage src={session.user?.image ?? ""} />
+                      <AvatarFallback>
+                        {getAvatarFallback(session.user?.name)}
+                      </AvatarFallback>
+                    </Avatar>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>
+                      {session.user?.name}
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => signOut()}>
+                      Logout
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <NavigationMenuLink
+                  asChild
+                  className={navigationMenuTriggerStyle()}
+                >
+                  <Link href="/login">Login</Link>
+                </NavigationMenuLink>
+              )}
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
