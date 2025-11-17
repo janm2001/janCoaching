@@ -1,11 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/Container/Container";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import trainingData from "@/data/trainingData";
+import PlanDetailsCard from "./PlanDetailsCard";
+import { useState } from "react";
 interface DayDetails {
   totalTime: string;
   duration: string;
@@ -20,7 +21,7 @@ interface Day {
   details: DayDetails;
 }
 
-interface Week {
+export interface Week {
   week: number;
   type: string;
   days: Day[];
@@ -38,14 +39,25 @@ interface PlanData {
 }
 
 interface PlanProps {
-    name: string;
+  name: string;
 }
 
 const Plan = ({ name }: PlanProps) => {
   const router = useRouter();
+  const [currentWeekIndex, setCurrentWeekIndex] = useState(0);
 
-  const planKey = name.replace(/-/g, ''); // "half-marathon" -> "halfmarathon"
+  const planKey = name.replace(/-/g, "");
   const planData = (trainingData as Record<string, PlanData>)[planKey] || null;
+
+  const handleIndexChange = (direction: "next" | "prev") => {
+    setCurrentWeekIndex((prevIndex) => {
+      const newIndex = direction === "next" ? prevIndex + 1 : prevIndex - 1;
+      if (newIndex < 0 || newIndex >= planData.weeks.length) {
+        return prevIndex;
+      }
+      return newIndex;
+    });
+  };
 
   if (!planData) {
     return (
@@ -66,25 +78,19 @@ const Plan = ({ name }: PlanProps) => {
         Back
       </Button>
       <h1 className="text-4xl font-bold mb-2">{planData.name}</h1>
-      <p className="text-lg text-muted-foreground mb-8">Duration: {planData.durationWeeks} weeks</p>
+      <p className="text-lg text-muted-foreground mb-8">
+        Duration: {planData.durationWeeks} weeks
+      </p>
 
-      {planData.weeks.map((week) => (
-        <Card key={week.week} className="mb-6">
-          <CardHeader>
-            <CardTitle>Week {week.week} <span className="text-base font-normal text-muted-foreground">- {week.type}</span></CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {week.days.map((day) => (
-                <Card key={day.day} className="p-4">
-                  <h4 className="font-bold">{day.day}: <span className="font-normal">{day.description}</span></h4>
-                  <p className="text-sm text-muted-foreground">{day.details.breakdown}</p>
-                </Card>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      ))}
+      <div className="flex gap-4 items-center justify-center">
+        <Button onClick={() => handleIndexChange("prev")}>
+          <ArrowLeft />
+        </Button>
+        <PlanDetailsCard week={planData.weeks[currentWeekIndex]} />
+        <Button onClick={() => handleIndexChange("next")}>
+          <ArrowRight />
+        </Button>
+      </div>
     </Container>
   );
 };
