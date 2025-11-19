@@ -13,6 +13,7 @@ import {
 
 interface PlanDetailsCardProps {
     week: Week;
+
 }
 
 const PlanDetailsCard = ({ week }: PlanDetailsCardProps) => {
@@ -45,6 +46,7 @@ const PlanDetailsCard = ({ week }: PlanDetailsCardProps) => {
                       {day.details.pace !== "N/A" && (
                         <p><strong>Pace:</strong> {day.details.pace} </p>
                       )}
+                      
                     </div>
                   </DialogContent>
                 </Dialog>
