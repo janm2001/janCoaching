@@ -91,6 +91,9 @@ const Plan = ({ name }: PlanProps) => {
           <ArrowRight />
         </Button>
       </div>
+      <div className="flex justify-end my-4">
+        <Button size="lg">Start Plan</Button>
+      </div>
     </Container>
   );
 };
