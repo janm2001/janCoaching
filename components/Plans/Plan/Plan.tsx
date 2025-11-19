@@ -81,6 +81,14 @@ const Plan = ({ name }: PlanProps) => {
       <p className="text-lg text-muted-foreground mb-8">
         Duration: {planData.durationWeeks} weeks
       </p>
+      <h3 className="text-2xl font-bold mb-2">Pace Definitions</h3>
+      <ul className="list-disc list-inside mb-8 ">
+        {Object.entries(planData.paceDefinitions).map(([key, value]) => (
+          <li key={key}>
+            <strong>{key}:</strong> {value}
+          </li>
+        ))}
+      </ul>
 
       <div className="flex gap-4 items-center justify-center">
         <Button onClick={() => handleIndexChange("prev")}>
