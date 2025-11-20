@@ -81,6 +81,9 @@ export function Navbar() {
                   <Button variant="ghost" onClick={() => signOut()}>
                     Logout
                   </Button>
+                  <Button variant="ghost" asChild>
+                    <Link href="/training">My Training</Link>
+                  </Button>
                 </>
               ) : (
                 <Button asChild>
@@ -134,13 +137,17 @@ export function Navbar() {
                     </Avatar>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuLabel>
-                      {session.user?.name}
-                    </DropdownMenuLabel>
+                    <DropdownMenuLabel>{session.user?.name}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={() => signOut()}>
                       Logout
                     </DropdownMenuItem>
+                    <NavigationMenuLink
+                      asChild
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      <Link href="/training">My Training</Link>
+                    </NavigationMenuLink>
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
@@ -158,5 +165,3 @@ export function Navbar() {
     </div>
   );
 }
-
-
